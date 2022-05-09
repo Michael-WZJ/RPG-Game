@@ -37,8 +37,8 @@ public class LoadFileTests {
         HashSet<String> entities = modelBas.getIdentifiers().get(ENTITY);
         HashSet<String> actions = modelBas.getIdentifiers().get(ACTION);
         List<String> entityList = Arrays.asList("cabin", "key", "log");
-        List<String> actionList = Arrays.asList("inv", "health", "cutdown",
-                "fight", "attack");
+        List<String> actionList = Arrays.asList("inv", "look", "health",
+                "cutdown", "fight", "attack");
 
         assertTrue(entities.containsAll(entityList));
         assertTrue(actions.containsAll(actionList));
@@ -70,6 +70,16 @@ public class LoadFileTests {
     // wzj
     void testActions() {
         GameModel model = serverExt.getGameModel();
+        for (HashSet<CustomAct> hSet : model.getActions().values()) {
+            System.out.println(hSet);
+            System.out.println();
+        }
+    }
+
+    @Test
+    // wzj
+    void testActions2() {
+        GameModel model = serverBas.getGameModel();
         for (HashSet<CustomAct> hSet : model.getActions().values()) {
             System.out.println(hSet);
             System.out.println();

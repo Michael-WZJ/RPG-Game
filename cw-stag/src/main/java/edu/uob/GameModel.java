@@ -61,7 +61,7 @@ public class GameModel {
         triggerNames.addAll(actions.keySet());
         entityNames.addAll(locations.keySet());
         for (Location loc : locations.values()) {
-            entityNames.addAll(loc.getEntitynames());
+            entityNames.addAll(loc.getEntityNames());
         }
     }
 

@@ -80,8 +80,9 @@ public final class GameServer {
                 gameModel.addPlayer(newPlayer);
             }
             return action.execute(this);
-        } catch (Exception e) {
-            return e.getMessage();
+
+        } catch (STAGException se) {
+            return se.getMessage();
         }
         // return "Thanks for your message: " + command; //wzj
     }
@@ -217,7 +218,7 @@ public final class GameServer {
             NodeList actions = root.getChildNodes();
 
             int actionsNum = actions.getLength();
-            for (int i = 1; i <= actionsNum-2; i += 2) {
+            for (int i = 1; i < actionsNum; i += 2) {
                 Element action = (Element)actions.item(i);
                 loadActionElements(action);
             }

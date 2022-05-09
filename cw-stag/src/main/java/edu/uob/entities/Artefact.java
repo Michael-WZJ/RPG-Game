@@ -9,6 +9,9 @@ public class Artefact extends GameEntity {
         super(name, description);
     }
 
+    public static String getType() {
+        return "Artefact";
+    }
 
     @Override
     public String toString() {

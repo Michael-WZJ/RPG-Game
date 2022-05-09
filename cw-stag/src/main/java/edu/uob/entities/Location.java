@@ -30,10 +30,16 @@ public class Location extends GameEntity {
     }
 
 
-    public Set<String> getEntitynames() {
+    public Set<String> getEntityNames() {
         return entities.keySet();
     }
 
+
+
+
+    public boolean hasEntity(String entity) {
+        return entities.containsKey(entity);
+    }
 
     @Override
     public String toString() {

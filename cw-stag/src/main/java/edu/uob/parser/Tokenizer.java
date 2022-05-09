@@ -23,23 +23,24 @@ public class Tokenizer {
         buildTokens(command);
     }
 
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    /*                      Methods for Operating Tokens                        */
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     public void buildTokens(String command) {
         // No username ?
         if (! command.contains(":")) {
-            buildCommandTokens(splitBySpaces(command));
+            buildCommandTokens(splitBySpaces(command.toLowerCase()));
             return;
         }
 
         // Has username ?
         int idx = command.indexOf(':');
         String username = command.substring(0, idx);
-        String commandStr = command.substring(idx + 1);
+        String commandStr = command.substring(idx + 1).toLowerCase();
         tokens.add(Arrays.asList("User", username));
         tokens.add(Arrays.asList(":", command.substring(idx, idx+1)));
         buildCommandTokens(splitBySpaces(commandStr));
     }
-
 
     public List<String> splitBySpaces(String command) {
         List<String> firstSlicing;
@@ -53,11 +54,32 @@ public class Tokenizer {
         }
         strList.remove("");
         for (String str : strList) {
-            tokens.add(Arrays.asList("Command", str.toLowerCase()));
+            if (isTrigger(str)) {
+                tokens.add(Arrays.asList("Trigger", str));
+            } else if (isEntityu(str)) {
+                tokens.add(Arrays.asList("Entity", str));
+            } else {
+                tokens.add(Arrays.asList("Other", str));
+            }
         }
     }
 
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    /*                      Methods for Doing Judgement                         */
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    public boolean isTrigger(String str) {
+        return triggerNames.contains(str);
+    }
+
+    public boolean isEntityu(String str) {
+        return entityNames.contains(str);
+    }
+
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    /*                      Accessor and Mutator Methods                        */
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     public void nextToken() {
         currentIDX += 1;
     }
@@ -84,6 +106,9 @@ public class Tokenizer {
         }
     }
 
+    public List<List<String>> getTokenList() {
+        return tokens;
+    }
 
     @Override
     public String toString() {
