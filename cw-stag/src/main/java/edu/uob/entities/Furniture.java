@@ -8,6 +8,10 @@ public class Furniture extends GameEntity {
         super(name, description);
     }
 
+    @Override
+    public String getType() {
+        return "Furniture";
+    }
 
     @Override
     public String toString() {

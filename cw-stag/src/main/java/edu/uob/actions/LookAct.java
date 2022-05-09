@@ -9,6 +9,7 @@ public class LookAct extends GameAction {
         setUsername(username);
     }
 
+    @Override
     public String execute(GameServer server) {
         return server.lookAround(getUsername());
     }

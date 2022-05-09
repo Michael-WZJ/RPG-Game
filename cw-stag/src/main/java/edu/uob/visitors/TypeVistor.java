@@ -17,7 +17,7 @@ public class TypeVistor extends Vistor {
         type = "Location";
     }
     public void visit(NPC n) {
-        type = "NPC";
+        type = "Character";
     }
     public void visit(Player p) {
         type = "Player";

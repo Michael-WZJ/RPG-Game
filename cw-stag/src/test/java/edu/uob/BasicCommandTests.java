@@ -40,15 +40,25 @@ final class BasicCommandTests {
 
   // Add more unit tests or integration tests here.
   @Test
+  void testwzj3() {
+    System.out.println(serverExt.handleCommand("look"));
+    System.out.println(serverExt.handleCommand("player2: get coin"));
+    System.out.println(serverExt.handleCommand("get coin and trapdoor"));
+    System.out.println(serverExt.handleCommand("get axe and potion"));
+    System.out.println(serverExt.handleCommand("get trapdoor"));
+    System.out.println(serverExt.handleCommand("look"));
+    System.out.println(serverExt.handleCommand("player2: INV"));
+  }
+  @Test
   void testwzj() {
-    System.out.println(serverExt.handleCommand("player 1: looK"));
-    System.out.println(serverExt.handleCommand("player 2: look"));
+    System.out.println(serverExt.handleCommand("player1: looK"));
+    System.out.println(serverExt.handleCommand("player2: look"));
     System.out.println(serverExt.handleCommand(" look"));
   }
   @Test
   void testwzj2() {
-    System.out.println(serverExt.handleCommand("player 1: inV"));
-    System.out.println(serverExt.handleCommand("player 2: in"));
+    System.out.println(serverExt.handleCommand("player1: inV"));
+    System.out.println(serverExt.handleCommand("player2: in"));
     System.out.println(serverExt.handleCommand(" inventory"));
   }
 

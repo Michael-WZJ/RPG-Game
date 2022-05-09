@@ -4,7 +4,7 @@ public abstract class GameAction
 {
     private String username;
 
-    abstract public String execute(GameServer server);
+    abstract public String execute(GameServer server) throws STAGException;
 
 
     public void setUsername(String user) {

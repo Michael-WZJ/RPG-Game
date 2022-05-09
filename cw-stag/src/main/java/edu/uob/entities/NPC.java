@@ -9,6 +9,11 @@ public class NPC extends GameEntity {
     }
 
     @Override
+    public String getType() {
+        return "Character";
+    }
+
+    @Override
     public String toString() {
         return this.getName() + ": " + this.getDescription();
     }

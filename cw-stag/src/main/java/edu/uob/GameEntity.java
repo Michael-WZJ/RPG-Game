@@ -18,6 +18,8 @@ public abstract class GameEntity
 
     public String getDescription()
     {
-        return description;
+        return description.toLowerCase();
     }
+
+    public abstract String getType();
 }

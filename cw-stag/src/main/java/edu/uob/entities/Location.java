@@ -21,8 +21,12 @@ public class Location extends GameEntity {
         paths.add(path);
     }
 
-    public void addEntities(GameEntity entity) {
+    public void addEntity(GameEntity entity) {
         entities.put(entity.getName(), entity);
+    }
+
+    public GameEntity removeEntity(String name) {
+        return entities.remove(name);
     }
 
     public void addPlayer(String username) {
@@ -34,11 +38,19 @@ public class Location extends GameEntity {
         return entities.keySet();
     }
 
-
+    public GameEntity getEntity(String entity) {
+        return entities.get(entity);
+    }
 
 
     public boolean hasEntity(String entity) {
         return entities.containsKey(entity);
+    }
+
+
+    @Override
+    public String getType() {
+        return "Location";
     }
 
     @Override

@@ -1,11 +1,11 @@
 package edu.uob.parser;
 
 import edu.uob.GameAction;
-import edu.uob.STAGException;
 import edu.uob.actions.CustomAct;
 import edu.uob.actions.GetAct;
 import edu.uob.actions.InvAct;
 import edu.uob.actions.LookAct;
+import edu.uob.STAGException;
 import edu.uob.STAGException.InvalidCommandException;
 
 import java.util.ArrayList;

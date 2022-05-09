@@ -11,11 +11,11 @@ import edu.uob.actions.CustomAct;
 import edu.uob.entities.*;
 
 public class GameModel {
-    private String startLocation;
     private final Map<String, Location> locations;
     private final Map<String, Player> players;
-    private final Map<String, HashSet<CustomAct>> actions;
 
+    private String startLocation;
+    private final Map<String, HashSet<CustomAct>> actions;
     private final HashSet<String> entityNames;
     private final HashSet<String> triggerNames;
 
@@ -54,7 +54,7 @@ public class GameModel {
     }
 
     public void addEntities(String loc, GameEntity entity) {
-        locations.get(loc).addEntities(entity);
+        locations.get(loc).addEntity(entity);
     }
 
     public void updateState() {
@@ -71,6 +71,7 @@ public class GameModel {
     public boolean hasPlayer(String username) {
         return players.containsKey(username);
     }
+
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     /*                      Accessor and Mutator Methods                        */
@@ -89,6 +90,11 @@ public class GameModel {
     public void addLocation(Location loc) {
         locations.put(loc.getName(), loc);
     }
+
+    public Location getLocation(String loc) {
+        return locations.get(loc);
+    }
+
     // wzj
     public Map<String, Location> getLocations() {
         return locations;
@@ -104,6 +110,7 @@ public class GameModel {
             actions.put(trigger,actionSet);
         }
     }
+
     // wzj
     public Map<String, HashSet<CustomAct>> getActions() {
         return actions;
@@ -112,6 +119,7 @@ public class GameModel {
     public Player getPlayer(String username) {
         return players.get(username);
     }
+
     // wzj
     public Map<String, Player> getPlayers() {
         return players;

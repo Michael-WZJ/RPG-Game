@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Player extends GameEntity {
-    private final Map<String, Artefact> inventory;
+    private final Map<String, GameEntity> inventory;
     private String location;
     private int health;
 
@@ -18,12 +18,22 @@ public class Player extends GameEntity {
     }
 
 
+    public void getArtefact(GameEntity entity) {
+        inventory.put(entity.getName(), entity);
+    }
+
     public void setLocation(String newLocation) {
         location = newLocation;
     }
 
     public String getLocation() {
         return location;
+    }
+
+
+    @Override
+    public String getType() {
+        return "Player";
     }
 
     @Override
@@ -36,8 +46,8 @@ public class Player extends GameEntity {
 
     public String printInventory() {
         String result = "";
-        for (Artefact a : inventory.values()) {
-            result = result.concat(a.toString() + "\n");
+        for (GameEntity e : inventory.values()) {
+            result = result.concat(e.toString() + "\n");
         }
         return result;
     }

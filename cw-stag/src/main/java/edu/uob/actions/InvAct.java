@@ -9,6 +9,7 @@ public class InvAct extends GameAction {
         setUsername(username);
     }
 
+    @Override
     public String execute(GameServer server) {
         return server.lookInventory(getUsername());
     }

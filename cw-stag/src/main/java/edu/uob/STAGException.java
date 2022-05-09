@@ -12,4 +12,10 @@ public class STAGException extends Exception {
         }
     }
 
+    public static class NoSubjectException extends STAGException {
+        public NoSubjectException(String message) {
+            super(message);
+        }
+    }
+
 }

@@ -100,6 +100,27 @@ public final class GameServer {
         return gameModel.describeLoc(location);
     }
 
+    public String getArtefact(String username, String entity) {
+        Player player = gameModel.getPlayer(username);
+        Location loc = gameModel.getLocation(player.getLocation());
+        GameEntity artefact = loc.removeEntity(entity);
+        player.getArtefact(artefact);
+        return "You picked up " + artefact.getDescription();
+    }
+
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    /*                      Methods for Doing Judgement                         */
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    public boolean canGet(String username, String entity) {
+        Player p = gameModel.getPlayer(username);
+        Location loc = gameModel.getLocation(p.getLocation());
+        if (! loc.hasEntity(entity)) {
+            return false;
+        }
+        return loc.getEntity(entity).getType().equals("Artefact");
+    }
+
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     /*                      Methods for Reading Files                           */
