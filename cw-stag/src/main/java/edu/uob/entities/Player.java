@@ -8,19 +8,15 @@ import java.util.Map;
 public class Player extends GameEntity {
     private final Map<String, GameEntity> inventory;
     private String location;
-    private int health;
+    private int healthLevel;
 
     public Player(String name, String description, String startLoc) {
         super(name, description);
         inventory = new HashMap<>();
         location = startLoc;
-        health = 3;
+        healthLevel = 3;
     }
 
-
-    public void getArtefact(GameEntity entity) {
-        inventory.put(entity.getName(), entity);
-    }
 
     public void setLocation(String newLocation) {
         location = newLocation;
@@ -28,6 +24,24 @@ public class Player extends GameEntity {
 
     public String getLocation() {
         return location;
+    }
+
+
+    public void addArtefact(GameEntity entity) {
+        inventory.put(entity.getName(), entity);
+    }
+
+    public GameEntity removeArtefact(String name) {
+        return inventory.remove(name);
+    }
+
+    public boolean hasArtefact(String entity) {
+        return inventory.containsKey(entity);
+    }
+
+
+    public int getHealthLevel() {
+        return healthLevel;
     }
 
 

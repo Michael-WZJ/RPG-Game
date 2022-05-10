@@ -1,10 +1,7 @@
 package edu.uob.parser;
 
 import edu.uob.GameAction;
-import edu.uob.actions.CustomAct;
-import edu.uob.actions.GetAct;
-import edu.uob.actions.InvAct;
-import edu.uob.actions.LookAct;
+import edu.uob.actions.*;
 import edu.uob.STAGException;
 import edu.uob.STAGException.InvalidCommandException;
 
@@ -44,6 +41,12 @@ public class ParserStag {
             return new InvAct(username);
         } else if (triggers.get(0).equals("get")) {
             return buildGetAct();
+        } else if (triggers.get(0).equals("drop")) {
+            return buildDropAct();
+        } else if (triggers.get(0).equals("goto")) {
+            return buildGotoAct();
+        } else if (triggers.get(0).equals("health")) {
+            return new HealthAct(username);
         }
         else {
             return findCustomAct();
@@ -65,6 +68,22 @@ public class ParserStag {
             throw new InvalidCommandException("No subject for get ?");
         } else {
             return new GetAct(username, subjects);
+        }
+    }
+
+    public DropAct buildDropAct() throws STAGException {
+        if (subjects.isEmpty()) {
+            throw new InvalidCommandException("No subject for drop ?");
+        } else {
+            return new DropAct(username, subjects);
+        }
+    }
+
+    public GotoAct buildGotoAct() throws STAGException {
+        if (subjects.isEmpty()) {
+            throw new InvalidCommandException("No subject for goto ?");
+        } else {
+            return new GotoAct(username, subjects);
         }
     }
 

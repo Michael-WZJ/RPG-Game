@@ -104,8 +104,30 @@ public final class GameServer {
         Player player = gameModel.getPlayer(username);
         Location loc = gameModel.getLocation(player.getLocation());
         GameEntity artefact = loc.removeEntity(entity);
-        player.getArtefact(artefact);
+        player.addArtefact(artefact);
         return "You picked up " + artefact.getDescription();
+    }
+
+    public String dropArtefact(String username, String entity) {
+        Player player = gameModel.getPlayer(username);
+        Location loc = gameModel.getLocation(player.getLocation());
+        GameEntity artefact = player.removeArtefact(entity);
+        loc.addEntity(artefact);
+        return "You dropped the " + artefact.getName();
+    }
+
+    public String gotoLocation(String username, String newLocation) {
+        Player player = gameModel.getPlayer(username);
+        Location currentLoc = gameModel.getLocation(player.getLocation());
+        currentLoc.removePlayer(username);
+        player.setLocation(newLocation);
+        gameModel.getLocation(newLocation).addPlayer(username);
+        return gameModel.describeLoc(newLocation);
+    }
+
+    public String lookHealth(String username) {
+        int healthLevel = gameModel.getPlayer(username).getHealthLevel();
+        return "Your health level is: " + healthLevel;
     }
 
 
@@ -119,6 +141,17 @@ public final class GameServer {
             return false;
         }
         return loc.getEntity(entity).getType().equals("Artefact");
+    }
+
+    public boolean canDrop(String username, String entity) {
+        Player p = gameModel.getPlayer(username);
+        return p.hasArtefact(entity);
+    }
+
+    public boolean canGoto(String username, String path) {
+        Player p = gameModel.getPlayer(username);
+        Location loc = gameModel.getLocation(p.getLocation());
+        return loc.hasPath(path);
     }
 
 

@@ -5,13 +5,13 @@ import edu.uob.GameEntity;
 import java.util.*;
 
 public class Location extends GameEntity {
-    private final List<String> paths;
+    private final HashSet<String> paths;
     private final Map<String, GameEntity> entities;
     private final HashSet<String> players;
 
     public Location(String name, String description) {
         super(name, description);
-        paths = new ArrayList<>();
+        paths = new HashSet<>();
         entities = new HashMap<>();
         players = new HashSet<>();
     }
@@ -19,18 +19,6 @@ public class Location extends GameEntity {
 
     public void addPath(String path) {
         paths.add(path);
-    }
-
-    public void addEntity(GameEntity entity) {
-        entities.put(entity.getName(), entity);
-    }
-
-    public GameEntity removeEntity(String name) {
-        return entities.remove(name);
-    }
-
-    public void addPlayer(String username) {
-        players.add(username);
     }
 
 
@@ -42,9 +30,30 @@ public class Location extends GameEntity {
         return entities.get(entity);
     }
 
+    public void addEntity(GameEntity entity) {
+        entities.put(entity.getName(), entity);
+    }
+
+    public GameEntity removeEntity(String name) {
+        return entities.remove(name);
+    }
+
+
+    public void addPlayer(String username) {
+        players.add(username);
+    }
+
+    public void removePlayer(String name) {
+        players.remove(name);
+    }
+
 
     public boolean hasEntity(String entity) {
         return entities.containsKey(entity);
+    }
+
+    public boolean hasPath(String path) {
+        return paths.contains(path);
     }
 
 
