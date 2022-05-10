@@ -16,6 +16,7 @@ import edu.uob.actions.CustomAct;
 import edu.uob.entities.*;
 import edu.uob.parser.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.alexmerz.graphviz.Parser;
 import com.alexmerz.graphviz.ParseException;
@@ -130,6 +131,10 @@ public final class GameServer {
         return "Your health level is: " + healthLevel;
     }
 
+    public HashSet<CustomAct> getAction(String trigger) {
+        return gameModel.getAction(trigger);
+    }
+
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     /*                      Methods for Doing Judgement                         */
@@ -137,10 +142,18 @@ public final class GameServer {
     public boolean canGet(String username, String entity) {
         Player p = gameModel.getPlayer(username);
         Location loc = gameModel.getLocation(p.getLocation());
+        if (loc.hasEntity(entity)) {
+            return loc.getEntity(entity).getType().equals("Artefact");
+        } else {
+            return false;
+        }
+
+        /* wzj
         if (! loc.hasEntity(entity)) {
             return false;
         }
         return loc.getEntity(entity).getType().equals("Artefact");
+        */
     }
 
     public boolean canDrop(String username, String entity) {
@@ -152,6 +165,17 @@ public final class GameServer {
         Player p = gameModel.getPlayer(username);
         Location loc = gameModel.getLocation(p.getLocation());
         return loc.hasPath(path);
+    }
+
+    public boolean canAct(String username, CustomAct action) {
+        Player p = gameModel.getPlayer(username);
+        Location loc = gameModel.getLocation(p.getLocation());
+        for (String ent : action.getSubjects()) {
+            if ((! p.hasArtefact(ent)) && (! loc.hasEntity(ent))) {
+                return false;
+            }
+        }
+        return true;
     }
 
 

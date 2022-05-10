@@ -49,7 +49,7 @@ public class ParserStag {
             return new HealthAct(username);
         }
         else {
-            return findCustomAct();
+            return buildFindCustomAct();
         }
     }
 
@@ -87,8 +87,13 @@ public class ParserStag {
         }
     }
 
-    public CustomAct findCustomAct() {
-        return new CustomAct("");
+    public FindCustomAct buildFindCustomAct() throws STAGException {
+        String trigger = triggers.get(0);
+        if (subjects.isEmpty()) {
+            throw new InvalidCommandException("No subject for "+ trigger +" ?");
+        } else {
+            return new FindCustomAct(username, trigger, subjects);
+        }
     }
 
 

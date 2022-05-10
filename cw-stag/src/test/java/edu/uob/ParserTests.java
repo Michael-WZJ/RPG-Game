@@ -25,7 +25,8 @@ public class ParserTests {
             "Bob: look",
             "Bob : look",
             "6 wzj",
-            "Bob:get a key TREE"
+            "Bob:get a key TREE",
+            "Tom:cutdown tree"
     };
     String[] invalidCommands = {
 
@@ -44,6 +45,18 @@ public class ParserTests {
         identifiersExt = serverExt.getGameModel().getIdentifiers();
     }
 
+    @Test
+        //wzj
+    void test3() {
+        ParserStag p = new ParserStag(validCommands[8], identifiersExt);
+        try {
+            GameAction action = p.parse();
+            System.out.println(action);
+
+        } catch (STAGException se) {
+
+        }
+    }
     @Test
     //wzj
     void test2() {

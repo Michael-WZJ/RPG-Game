@@ -100,6 +100,7 @@ public class GameModel {
         return locations;
     }
 
+
     public void addAction(CustomAct action) {
         String trigger = action.getTrigger();
         if (actions.containsKey(trigger)) {
@@ -111,10 +112,15 @@ public class GameModel {
         }
     }
 
+    public HashSet<CustomAct> getAction(String trigger) {
+        return actions.get(trigger);
+    }
+
     // wzj
     public Map<String, HashSet<CustomAct>> getActions() {
         return actions;
     }
+
 
     public Player getPlayer(String username) {
         return players.get(username);

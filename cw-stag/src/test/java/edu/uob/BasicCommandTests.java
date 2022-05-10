@@ -1,11 +1,13 @@
 package edu.uob;
 
+import edu.uob.actions.CustomAct;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.nio.file.Paths;
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // PLEASE READ:
@@ -39,6 +41,40 @@ final class BasicCommandTests {
   }
 
   // Add more unit tests or integration tests here.
+  @Test
+  void testwzj9() {
+    System.out.println(serverExt.handleCommand("cutdown "));
+    System.out.println(serverExt.handleCommand("player2: health"));
+
+  }
+  @Test
+  void testwzj8() {
+    System.out.println(serverExt.handleCommand("bob: look"));
+    System.out.println(serverExt.handleCommand("bob: cutdown"));
+    System.out.println();
+    System.out.println(serverExt.handleCommand("bob: cutdown tree"));
+    System.out.println();
+    System.out.println(serverExt.handleCommand("bob: get axe"));
+    System.out.println();
+    System.out.println(serverExt.handleCommand("bob: goto forest"));
+    System.out.println(serverExt.handleCommand("bob: inv"));
+    System.out.println(serverExt.handleCommand("bob: cutdown tree"));
+  }
+  @Test
+  // wzj 该测试 之后 放到其他测试类中，不要放在command测试里
+  void testwzj7() {
+    System.out.println(serverExt.handleCommand("bob: look"));
+    CustomAct action = new CustomAct("cutdown");
+    action.addSubject("axe");
+    assertTrue(serverExt.canAct("bob", action));
+    action.addSubject("key");
+    assertFalse(serverExt.canAct("bob", action));
+    System.out.println(serverExt.handleCommand("bob: goto forest"));
+    System.out.println(serverExt.handleCommand("bob: get key"));
+    System.out.println(serverExt.handleCommand("bob: goto cabin"));
+    System.out.println(serverExt.handleCommand("bob: inv"));
+    assertTrue(serverExt.canAct("bob", action));
+  }
   @Test
   void testwzj6() {
     System.out.println(serverExt.handleCommand("health level"));

@@ -3,6 +3,7 @@ package edu.uob.actions;
 import edu.uob.GameAction;
 import edu.uob.GameServer;
 import java.util.HashSet;
+import edu.uob.STAGException;
 
 public class CustomAct extends GameAction {
     private String trigger;
@@ -18,11 +19,24 @@ public class CustomAct extends GameAction {
         produces = new HashSet<>();
     }
 
-    public String execute(GameServer server) {
-        return "";
+    @Override
+    public String execute(GameServer server) throws STAGException {
+        return narration;
     }
 
 
+    public void consume() {
+    }
+
+    public void produce() {
+
+    }
+
+
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    /*                  Methods for Building CustomAction                       */
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     public void addSubject(String subject) {
         subjects.add(subject);
     }
@@ -39,17 +53,20 @@ public class CustomAct extends GameAction {
         this.narration = narration;
     }
 
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    /*                      Accessor and Mutator Methods                        */
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     public String getNarration() {
         return narration;
     }
 
-    // wzj
-    public void setTrigger(String trigger) {
-        this.trigger = trigger;
-    }
-
     public String getTrigger() {
         return trigger;
+    }
+
+    public HashSet<String> getSubjects() {
+        return subjects;
     }
 
     @Override
