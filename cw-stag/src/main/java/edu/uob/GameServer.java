@@ -242,7 +242,7 @@ public final class GameServer {
         } catch (FileNotFoundException fnfe) {
             System.out.println("Not found DOT File ?");
         } catch (ParseException pe) {
-
+            System.out.println("Invalid DOT File ?");
         }
     }
 
@@ -325,7 +325,6 @@ public final class GameServer {
     }
 
 
-
     public void loadActions(File actionsFile) {
         try {
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -340,11 +339,11 @@ public final class GameServer {
             }
 
         } catch (ParserConfigurationException pce) {
-
+            System.out.println("Invalid XML File ?\nConfiguration error");
         } catch (SAXException saxe) {
-
+            System.out.println("Invalid XML File ?\nSAX error or warning");
         } catch (IOException ioe) {
-
+            System.out.println("Not found XML File ?");
         }
     }
 
