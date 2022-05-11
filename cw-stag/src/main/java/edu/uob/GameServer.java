@@ -240,7 +240,7 @@ public final class GameServer {
             loadPaths(paths);
 
         } catch (FileNotFoundException fnfe) {
-
+            System.out.println("Not found DOT File ?");
         } catch (ParseException pe) {
 
         }
