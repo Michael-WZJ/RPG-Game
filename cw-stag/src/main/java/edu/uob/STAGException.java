@@ -24,4 +24,12 @@ public class STAGException extends Exception {
             super("Not have enough entity to perform '" + trigger + "' ?");
         }
     }
+
+    public static class ConflictException extends STAGException {
+        public ConflictException(String type, String entities) {
+            super("Some of the entity: " + entities + " can't be '"+ type +
+                    "' ?\nMay be taken by other players ?");
+        }
+
+    }
 }

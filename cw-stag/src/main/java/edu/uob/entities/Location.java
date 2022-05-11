@@ -1,6 +1,7 @@
 package edu.uob.entities;
 
 import edu.uob.GameEntity;
+import edu.uob.Vistor;
 
 import java.util.*;
 
@@ -19,6 +20,10 @@ public class Location extends GameEntity {
 
     public void addPath(String path) {
         paths.add(path);
+    }
+
+    public void removePath(String path) {
+        paths.remove(path);
     }
 
 
@@ -56,6 +61,11 @@ public class Location extends GameEntity {
         return paths.contains(path);
     }
 
+
+    @Override
+    public void accept(Vistor v) {
+        v.visit(this);
+    }
 
     @Override
     public String getType() {

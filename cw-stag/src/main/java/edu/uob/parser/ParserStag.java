@@ -90,7 +90,7 @@ public class ParserStag {
     public FindCustomAct buildFindCustomAct() throws STAGException {
         String trigger = triggers.get(0);
         if (subjects.isEmpty()) {
-            throw new InvalidCommandException("No subject for "+ trigger +" ?");
+            throw new InvalidCommandException("No valid subject for '"+ trigger +"' ?");
         } else {
             return new FindCustomAct(username, trigger, subjects);
         }

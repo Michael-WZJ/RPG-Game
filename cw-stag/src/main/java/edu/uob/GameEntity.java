@@ -11,6 +11,11 @@ public abstract class GameEntity
         this.description = description;
     }
 
+    // wwzzjj
+    public abstract void accept(Vistor v);
+
+    public abstract String getType();
+
     public String getName()
     {
         return name;
@@ -20,6 +25,4 @@ public abstract class GameEntity
     {
         return description.toLowerCase();
     }
-
-    public abstract String getType();
 }

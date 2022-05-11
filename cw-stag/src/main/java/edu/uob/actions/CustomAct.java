@@ -2,8 +2,13 @@ package edu.uob.actions;
 
 import edu.uob.GameAction;
 import edu.uob.GameServer;
+import edu.uob.GameEntity;
 import java.util.HashSet;
+
+import edu.uob.entities.Player;
+import edu.uob.visitors.*;
 import edu.uob.STAGException;
+import edu.uob.STAGException.ConflictException;
 
 public class CustomAct extends GameAction {
     private String trigger;
@@ -21,15 +26,58 @@ public class CustomAct extends GameAction {
 
     @Override
     public String execute(GameServer server) throws STAGException {
-        return narration;
+        if (! consumes.isEmpty()) {
+            doConsumeAct(server);
+        }
+        if (! produces.isEmpty()) {
+            doProduceAct(server);
+        }
+
+        // Player still alive ?
+        Player p = server.getPlayer(getUsername());
+        if (p.getHealthLevel() == 0) {
+            server.dieByHarm(p);
+            return narration +
+                    "\nYou died and lost all of your items, " +
+                    "you must return to the start of the game";
+        } else {
+            return narration;
+        }
     }
 
 
-    public void consume() {
+    public void doConsumeAct(GameServer server) throws STAGException {
+        HashSet<GameEntity> consumedEntitySet = getEntitySet(consumes, server);
+        if (consumedEntitySet.size() != consumes.size()) {
+            throw new ConflictException("consumed", consumes.toString());
+        }
+        ConsumeVisitor conV = new ConsumeVisitor(getUsername(), server);
+        for (GameEntity e : consumedEntitySet) {
+            e.accept(conV);
+        }
     }
 
-    public void produce() {
+    public void doProduceAct(GameServer server) throws STAGException {
+        HashSet<GameEntity> producedEntitySet = getEntitySet(produces, server);
+        if (producedEntitySet.size() != produces.size()) {
+            throw new ConflictException("produced", produces.toString());
+        }
+        ProduceVisitor proV = new ProduceVisitor(getUsername(), server);
+        for (GameEntity e : producedEntitySet) {
+            e.accept(proV);
+        }
+    }
 
+    public HashSet<GameEntity> getEntitySet(HashSet<String> names, GameServer server) {
+        HashSet<GameEntity> result;
+        if (names.remove("health")) {
+            // Contains 'health'
+            result = server.getEntitiesByName(names, getUsername());
+            result.add(server.getPlayer(getUsername()));
+        } else {
+            result = server.getEntitiesByName(names, getUsername());
+        }
+        return result;
     }
 
 

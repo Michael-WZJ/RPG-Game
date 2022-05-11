@@ -39,6 +39,15 @@ public class GameModel {
         return desc;
     }
 
+    public String getLocationOfEnt(String entity) {
+        for (Location l : locations.values()) {
+            if (l.hasEntity(entity)) {
+                return l.getName();
+            }
+        }
+        return "";
+    }
+
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     /*                    Methods for Changing Game State                       */
@@ -53,7 +62,7 @@ public class GameModel {
         locations.get(sourceLoc).addPath(targetLoc);
     }
 
-    public void addEntities(String loc, GameEntity entity) {
+    public void addEntity(String loc, GameEntity entity) {
         locations.get(loc).addEntity(entity);
     }
 
@@ -72,6 +81,14 @@ public class GameModel {
         return players.containsKey(username);
     }
 
+    public boolean isEntityInLoc(String entity) {
+        for (Location l : locations.values()) {
+            if (l.hasEntity(entity)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     /*                      Accessor and Mutator Methods                        */
@@ -84,6 +101,16 @@ public class GameModel {
 
     public String getStartLoc() {
         return startLocation;
+    }
+
+
+    public GameEntity getEntityInLoc(String entity) {
+        for (Location l : locations.values()) {
+            if (l.hasEntity(entity)) {
+                return l.getEntity(entity);
+            }
+        }
+        return null;
     }
 
 
@@ -130,6 +157,7 @@ public class GameModel {
     public Map<String, Player> getPlayers() {
         return players;
     }
+
 
     public List<HashSet<String>>  getIdentifiers() {
         List<HashSet<String>> identifiers = new ArrayList<>();

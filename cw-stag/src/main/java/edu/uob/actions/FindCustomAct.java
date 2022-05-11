@@ -5,6 +5,7 @@ import edu.uob.GameServer;
 import edu.uob.STAGException;
 import edu.uob.STAGException.AmbiguityException;
 import edu.uob.STAGException.NoSubjectException;
+import edu.uob.STAGException.InvalidCommandException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +52,7 @@ public class FindCustomAct extends GameAction {
     }
 
 
-    public HashSet<CustomAct> fetchAction(HashSet<CustomAct> allActions) {
+    public HashSet<CustomAct> fetchAction(HashSet<CustomAct> allActions) throws STAGException {
         HashSet<String> subjectsInAllActs = new HashSet<>();
         HashSet<CustomAct> resultSet = new HashSet<>();
         for (CustomAct act : allActions) {
@@ -59,6 +60,9 @@ public class FindCustomAct extends GameAction {
         }
         HashSet<String> subjectsInCommand = new HashSet<>(subjects);
         subjectsInCommand.retainAll(subjectsInAllActs);
+        if (subjectsInCommand.isEmpty()) {
+            throw new InvalidCommandException("No valid subject for '"+ trigger +"' ?");
+        }
 
         for (CustomAct act : allActions) {
             if (act.getSubjects().containsAll(subjectsInCommand)) {

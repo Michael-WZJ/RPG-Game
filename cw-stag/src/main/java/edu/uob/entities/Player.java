@@ -1,8 +1,10 @@
 package edu.uob.entities;
 
 import edu.uob.GameEntity;
+import edu.uob.Vistor;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class Player extends GameEntity {
@@ -27,6 +29,27 @@ public class Player extends GameEntity {
     }
 
 
+    public void setHealthLevel(int level) {
+        healthLevel = level;
+    }
+
+    public int getHealthLevel() {
+        return healthLevel;
+    }
+
+    public void increaseHealth() {
+        if (healthLevel < 3) {
+            healthLevel += 1;
+        }
+    }
+
+    public void decreaseHealth() {
+        if (healthLevel > 0) {
+            healthLevel -= 1;
+        }
+    }
+
+
     public void addArtefact(GameEntity entity) {
         inventory.put(entity.getName(), entity);
     }
@@ -35,15 +58,23 @@ public class Player extends GameEntity {
         return inventory.remove(name);
     }
 
+    public GameEntity getArtefact(String name) {
+        return inventory.get(name);
+    }
+
+    public HashSet<String> listAllArtefacts() {
+        return new HashSet<>(inventory.keySet());
+    }
+
     public boolean hasArtefact(String entity) {
         return inventory.containsKey(entity);
     }
 
 
-    public int getHealthLevel() {
-        return healthLevel;
+    @Override
+    public void accept(Vistor v) {
+        v.visit(this);
     }
-
 
     @Override
     public String getType() {

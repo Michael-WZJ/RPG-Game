@@ -110,19 +110,19 @@ public final class GameServer {
     }
 
     public String dropArtefact(String username, String entity) {
-        Player player = gameModel.getPlayer(username);
-        Location loc = gameModel.getLocation(player.getLocation());
+        Player player = getPlayer(username);
+        Location loc = getLocation(player.getLocation());
         GameEntity artefact = player.removeArtefact(entity);
         loc.addEntity(artefact);
         return "You dropped the " + artefact.getName();
     }
 
     public String gotoLocation(String username, String newLocation) {
-        Player player = gameModel.getPlayer(username);
-        Location currentLoc = gameModel.getLocation(player.getLocation());
+        Player player = getPlayer(username);
+        Location currentLoc = getLocation(player.getLocation());
         currentLoc.removePlayer(username);
         player.setLocation(newLocation);
-        gameModel.getLocation(newLocation).addPlayer(username);
+        getLocation(newLocation).addPlayer(username);
         return gameModel.describeLoc(newLocation);
     }
 
@@ -135,6 +135,44 @@ public final class GameServer {
         return gameModel.getAction(trigger);
     }
 
+    public HashSet<GameEntity> getEntitiesByName(HashSet<String> names, String username) {
+        HashSet<GameEntity> result = new HashSet<>();
+        GameEntity tmpEnt;
+        for (String name : names) {
+            tmpEnt = getLocation(name);
+            if (tmpEnt != null) {
+                result.add(tmpEnt);
+            }
+            tmpEnt = gameModel.getEntityInLoc(name);
+            if (tmpEnt != null) {
+                result.add(tmpEnt);
+            }
+            tmpEnt = getPlayer(username).getArtefact(name);
+            if (tmpEnt != null) {
+                result.add(tmpEnt);
+            }
+        }
+        return result;
+    }
+
+    public void moveEntityToLoc(GameEntity entity, String destination) {
+        String entName = entity.getName();
+        if (! gameModel.isEntityInLoc(entName)) {
+            return;
+        }
+        Location currentLoc = getLocation(gameModel.getLocationOfEnt(entName));
+        currentLoc.removeEntity(entName);
+        gameModel.addEntity(destination, entity);
+    }
+
+    public void dieByHarm(Player p) {
+        HashSet<String> inventory = new HashSet<>(p.listAllArtefacts());
+        for (String entity : inventory) {
+            dropArtefact(p.getName(), entity);
+        }
+        gotoLocation(p.getName(), gameModel.getStartLoc());
+        p.setHealthLevel(3);
+    }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     /*                      Methods for Doing Judgement                         */
@@ -258,7 +296,7 @@ public final class GameServer {
         NPC character;
         for (Node n : characters) {
             character = new NPC(n.getId().getId(), n.getAttribute("description"));
-            gameModel.addEntities(locName, character);
+            gameModel.addEntity(locName, character);
         }
     }
 
@@ -270,7 +308,7 @@ public final class GameServer {
         Furniture furniture;
         for (Node n : furnitureList) {
             furniture = new Furniture(n.getId().getId(), n.getAttribute("description"));
-            gameModel.addEntities(locName, furniture);
+            gameModel.addEntity(locName, furniture);
         }
     }
 
@@ -282,7 +320,7 @@ public final class GameServer {
         Artefact artefact;
         for (Node n : artefacts) {
             artefact = new Artefact(n.getId().getId(), n.getAttribute("description"));
-            gameModel.addEntities(locName, artefact);
+            gameModel.addEntity(locName, artefact);
         }
     }
 
@@ -359,20 +397,20 @@ public final class GameServer {
     }
 
 
-
-
-
-
-
-
-
-
-
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    /*                      Accessor and Mutator Methods                        */
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     public GameModel getGameModel() {
         return gameModel;
     }
 
+    public Player getPlayer(String username) {
+        return gameModel.getPlayer(username);
+    }
+
+    public Location getLocation(String location) {
+        return gameModel.getLocation(location);
+    }
 
     // wzj 不要这么多空行
     //  === Methods below are there to facilitate server related operations. ===

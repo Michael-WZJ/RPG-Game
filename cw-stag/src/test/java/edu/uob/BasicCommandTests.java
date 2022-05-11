@@ -59,6 +59,8 @@ final class BasicCommandTests {
     System.out.println(serverExt.handleCommand("bob: goto forest"));
     System.out.println(serverExt.handleCommand("bob: inv"));
     System.out.println(serverExt.handleCommand("bob: cutdown tree"));
+    System.out.println();
+    System.out.println(serverExt.handleCommand("bob: look"));
   }
   @Test
   // wzj 该测试 之后 放到其他测试类中，不要放在command测试里
