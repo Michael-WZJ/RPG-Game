@@ -61,6 +61,23 @@ final class BasicCommandTests {
     System.out.println(serverExt.handleCommand("bob: cutdown tree"));
     System.out.println();
     System.out.println(serverExt.handleCommand("bob: look"));
+    System.out.println(serverExt.handleCommand("bob: get key"));
+    System.out.println();
+    System.out.println(serverExt.handleCommand("bob: goto cabin"));
+    System.out.println(serverExt.handleCommand("bob: open trapdoor"));
+    System.out.println();
+    System.out.println(serverExt.handleCommand("bob: goto cellar"));
+    System.out.println(serverExt.handleCommand("bob: hit elf"));
+    System.out.println();
+    System.out.println(serverExt.handleCommand("bob: health"));
+    System.out.println();
+    System.out.println(serverExt.handleCommand("bob: hit elf"));
+    System.out.println();
+    System.out.println(serverExt.handleCommand("bob: hit elf"));
+    System.out.println();
+    System.out.println(serverExt.handleCommand("bob: look"));
+    System.out.println(serverExt.handleCommand("bob: goto cellar"));
+    System.out.println(serverExt.handleCommand("bob: health"));
   }
   @Test
   // wzj 该测试 之后 放到其他测试类中，不要放在command测试里

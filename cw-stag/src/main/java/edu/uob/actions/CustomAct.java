@@ -47,7 +47,8 @@ public class CustomAct extends GameAction {
 
 
     public void doConsumeAct(GameServer server) throws STAGException {
-        HashSet<GameEntity> consumedEntitySet = getEntitySet(consumes, server);
+        HashSet<String> consumedNames = new HashSet<>(consumes);
+        HashSet<GameEntity> consumedEntitySet = getEntitySet(consumedNames, server);
         if (consumedEntitySet.size() != consumes.size()) {
             throw new ConflictException("consumed", consumes.toString());
         }
@@ -58,7 +59,8 @@ public class CustomAct extends GameAction {
     }
 
     public void doProduceAct(GameServer server) throws STAGException {
-        HashSet<GameEntity> producedEntitySet = getEntitySet(produces, server);
+        HashSet<String> producedNames = new HashSet<>(produces);
+        HashSet<GameEntity> producedEntitySet = getEntitySet(producedNames, server);
         if (producedEntitySet.size() != produces.size()) {
             throw new ConflictException("produced", produces.toString());
         }
