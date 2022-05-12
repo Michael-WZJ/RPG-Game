@@ -16,7 +16,7 @@ public class STAGException extends Exception {
         private static final long serialVersionUID = 980069672548821880L;
 
         public InvalidCommandException(String message) {
-            super(message);
+            super("[ERROR] " + message);
         }
     }
 
@@ -25,7 +25,7 @@ public class STAGException extends Exception {
         private static final long serialVersionUID = -909922183553550544L;
 
         public AmbiguityException(String trigger) {
-            super("More than one thing can be done by '" + trigger +
+            super("[ERROR] More than one thing can be done by '" + trigger +
                     "' ?\nWhich one do you want ?");
         }
     }
@@ -35,7 +35,7 @@ public class STAGException extends Exception {
         private static final long serialVersionUID = 9081219753469908208L;
 
         public NoSubjectException(String trigger) {
-            super("Not have enough entity to perform '" + trigger + "' ?");
+            super("[ERROR] Not have enough entity to perform '" + trigger + "' ?");
         }
     }
 
@@ -44,7 +44,7 @@ public class STAGException extends Exception {
         private static final long serialVersionUID = 1525266928792542261L;
 
         public ConflictException(String type, String entities) {
-            super("Some of the entity: " + entities + " can't be '"+ type +
+            super("[ERROR] Some of the entity: " + entities + " can't be '"+ type +
                     "' ?\nMay be taken by other players ?");
         }
 

@@ -56,7 +56,7 @@ public class Tokenizer {
         for (String str : strList) {
             if (isTrigger(str)) {
                 tokens.add(Arrays.asList("Trigger", str));
-            } else if (isEntityu(str)) {
+            } else if (isEntity(str)) {
                 tokens.add(Arrays.asList("Entity", str));
             } else {
                 tokens.add(Arrays.asList("Other", str));
@@ -72,7 +72,7 @@ public class Tokenizer {
         return triggerNames.contains(str);
     }
 
-    public boolean isEntityu(String str) {
+    public boolean isEntity(String str) {
         return entityNames.contains(str);
     }
 

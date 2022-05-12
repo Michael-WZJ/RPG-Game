@@ -18,15 +18,13 @@ public class ParserTests {
     private List<HashSet<String>> identifiersBas;
     private List<HashSet<String>> identifiersExt;
     String[] validCommands = {
-            "chop down the tree using the axe",
-            "CHOP down the TREE using the axe",
-            "Simon: chop down the Tree using the axe",
+            "Chop down the TREE using the axe",
+            "Tom: goto forest",
             "Bob:look",
             "Bob: look",
             "Bob : look",
-            "6 wzj",
-            "Bob:get a key TREE",
-            "Tom:cutdown tree"
+            "Tom:get a key TREE",
+            "cutdown tree"
     };
     String[] invalidCommands = {
     };
@@ -42,6 +40,14 @@ public class ParserTests {
         File actionsFile1 = Paths.get("config/extended-actions.xml").toAbsolutePath().toFile();
         serverExt = new GameServer(entitiesFile1, actionsFile1);
         identifiersExt = serverExt.getGameModel().getIdentifiers();
+    }
+
+    @Test
+    void testTokenizer() {
+        Tokenizer t = new Tokenizer(validCommands[0], identifiersExt);
+        assertTrue(t.isEntity("cellar"));
+        assertTrue(t.isEntity("shovel"));
+        //assertEquals("");
     }
 
     @Test
@@ -69,10 +75,5 @@ public class ParserTests {
         }
     }
 
-    @Test
-    //wzj
-    void test1() {
-        Tokenizer t = new Tokenizer(validCommands[2], identifiersExt);
-        System.out.println(t);
-    }
+
 }
