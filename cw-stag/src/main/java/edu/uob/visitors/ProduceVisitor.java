@@ -1,10 +1,10 @@
 package edu.uob.visitors;
 
 import edu.uob.GameServer;
-import edu.uob.Vistor;
+import edu.uob.Visitor;
 import edu.uob.entities.*;
 
-public class ProduceVisitor extends Vistor {
+public class ProduceVisitor extends Visitor {
     private final String user;
     private final GameServer gameServer;
 

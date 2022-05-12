@@ -18,9 +18,9 @@ public final class GameClient {
 
     public static void main(String[] args) throws IOException {
 
-        String username = args[0];
+        //String username = args[0];
         // wzj
-        //String username = "wzj";
+        String username = "wzj";
         // wzj
         while (!Thread.interrupted()) handleNextCommand(username);
     }

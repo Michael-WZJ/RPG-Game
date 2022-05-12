@@ -1,7 +1,7 @@
 package edu.uob.entities;
 
 import edu.uob.GameEntity;
-import edu.uob.Vistor;
+import edu.uob.Visitor;
 
 import java.util.*;
 
@@ -63,7 +63,7 @@ public class Location extends GameEntity {
 
 
     @Override
-    public void accept(Vistor v) {
+    public void accept(Visitor v) {
         v.visit(this);
     }
 

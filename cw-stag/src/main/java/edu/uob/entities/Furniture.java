@@ -1,8 +1,7 @@
 package edu.uob.entities;
 
 import edu.uob.GameEntity;
-import edu.uob.GameServer;
-import edu.uob.Vistor;
+import edu.uob.Visitor;
 
 public class Furniture extends GameEntity {
 
@@ -11,7 +10,7 @@ public class Furniture extends GameEntity {
     }
 
     @Override
-    public void accept(Vistor v) {
+    public void accept(Visitor v) {
         v.visit(this);
     }
 

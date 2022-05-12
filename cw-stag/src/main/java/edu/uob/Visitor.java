@@ -2,7 +2,7 @@ package edu.uob;
 
 import edu.uob.entities.*;
 
-abstract public class Vistor {
+abstract public class Visitor {
     public abstract void visit(Artefact a);
     public abstract void visit(Furniture f);
     public abstract void visit(Location l);

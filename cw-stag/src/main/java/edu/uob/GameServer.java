@@ -231,7 +231,7 @@ public final class GameServer {
             // The locations will always be in the first subgraph
             ArrayList<Graph> locations = sections.get(0).getSubgraphs();
             Graph firstLoc = locations.get(0);
-            String firstLocName = firstLoc.getNodes(false).get(0).getId().getId();
+            String firstLocName = firstLoc.getNodes(false).get(0).getId().getId().toLowerCase();
             gameModel.setStartLocation(firstLocName);
             loadLocations(locations);
 
@@ -239,10 +239,8 @@ public final class GameServer {
             ArrayList<Edge> paths = sections.get(1).getEdges();
             loadPaths(paths);
 
-        } catch (FileNotFoundException fnfe) {
-            System.out.println("Not found DOT File ?");
-        } catch (ParseException pe) {
-            System.out.println("Invalid DOT File ?");
+        } catch (FileNotFoundException | ParseException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -253,7 +251,7 @@ public final class GameServer {
         String locName, locDesc;
         for (Graph g : locations) {
             Node locDetails = g.getNodes(false).get(0);
-            locName = locDetails.getId().getId();
+            locName = locDetails.getId().getId().toLowerCase();
             locDesc = locDetails.getAttribute("description");
             gameModel.addLocation(new Location(locName, locDesc));
             loadEntToLoc(g, locName);
@@ -268,7 +266,7 @@ public final class GameServer {
         for (Edge e : paths) {
             fromLoc = e.getSource().getNode();
             toLoc = e.getTarget().getNode();
-            gameModel.addPath(fromLoc.getId().getId(), toLoc.getId().getId());
+            gameModel.addPath(fromLoc.getId().getId().toLowerCase(), toLoc.getId().getId().toLowerCase());
         }
     }
 
@@ -279,7 +277,7 @@ public final class GameServer {
         }
         String entityType;
         for (Graph g : entities) {
-            entityType = g.getId().getId();
+            entityType = g.getId().getId().toLowerCase();
             switch (entityType) {
                 case "characters" -> loadCharacters(g, locName);
                 case "artefacts" -> loadArtefacts(g, locName);
@@ -295,7 +293,7 @@ public final class GameServer {
         }
         NPC character;
         for (Node n : characters) {
-            character = new NPC(n.getId().getId(), n.getAttribute("description"));
+            character = new NPC(n.getId().getId().toLowerCase(), n.getAttribute("description"));
             gameModel.addEntity(locName, character);
         }
     }
@@ -307,7 +305,7 @@ public final class GameServer {
         }
         Furniture furniture;
         for (Node n : furnitureList) {
-            furniture = new Furniture(n.getId().getId(), n.getAttribute("description"));
+            furniture = new Furniture(n.getId().getId().toLowerCase(), n.getAttribute("description"));
             gameModel.addEntity(locName, furniture);
         }
     }
@@ -319,7 +317,7 @@ public final class GameServer {
         }
         Artefact artefact;
         for (Node n : artefacts) {
-            artefact = new Artefact(n.getId().getId(), n.getAttribute("description"));
+            artefact = new Artefact(n.getId().getId().toLowerCase(), n.getAttribute("description"));
             gameModel.addEntity(locName, artefact);
         }
     }
@@ -338,12 +336,8 @@ public final class GameServer {
                 loadActionElements(action);
             }
 
-        } catch (ParserConfigurationException pce) {
-            System.out.println("Invalid XML File ?\nConfiguration error");
-        } catch (SAXException saxe) {
-            System.out.println("Invalid XML File ?\nSAX error or warning");
-        } catch (IOException ioe) {
-            System.out.println("Not found XML File ?");
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -352,7 +346,7 @@ public final class GameServer {
         NodeList triggerList = triggers.getElementsByTagName("keyword");
         int triggerNum = triggerList.getLength();
         for (int i = 0; i < triggerNum; i++) {
-            String trigger = triggerList.item(i).getTextContent();
+            String trigger = triggerList.item(i).getTextContent().toLowerCase();
             CustomAct cusAction = buildCustomAct(trigger, action);
             //System.out.println(cusAction); // wzj
             gameModel.addAction(cusAction);
@@ -368,7 +362,7 @@ public final class GameServer {
         NodeList subjectList = subjects.getElementsByTagName("entity");
         int subjectNum = subjectList.getLength();
         for (int i = 0; i < subjectNum; i++) {
-            String subject = subjectList.item(i).getTextContent();
+            String subject = subjectList.item(i).getTextContent().toLowerCase();
             cusAction.addSubject(subject);
         }
 
@@ -376,7 +370,7 @@ public final class GameServer {
         NodeList consumedList = consumed.getElementsByTagName("entity");
         int consumedNum = consumedList.getLength();
         for (int i = 0; i < consumedNum; i++) {
-            String consume = consumedList.item(i).getTextContent();
+            String consume = consumedList.item(i).getTextContent().toLowerCase();
             cusAction.addConsumes(consume);
         }
 
@@ -384,7 +378,7 @@ public final class GameServer {
         NodeList producedList = produced.getElementsByTagName("entity");
         int producedNum = producedList.getLength();
         for (int i = 0; i < producedNum; i++) {
-            String produce = producedList.item(i).getTextContent();
+            String produce = producedList.item(i).getTextContent().toLowerCase();
             cusAction.addProduces(produce);
         }
 

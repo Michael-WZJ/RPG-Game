@@ -12,7 +12,7 @@ public abstract class GameEntity
     }
 
     // wwzzjj
-    public abstract void accept(Vistor v);
+    public abstract void accept(Visitor v);
 
     public abstract String getType();
 

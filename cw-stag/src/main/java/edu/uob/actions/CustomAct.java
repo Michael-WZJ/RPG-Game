@@ -11,10 +11,10 @@ import edu.uob.STAGException;
 import edu.uob.STAGException.ConflictException;
 
 public class CustomAct extends GameAction {
-    private String trigger;
-    private HashSet<String> subjects;
-    private HashSet<String> consumes;
-    private HashSet<String> produces;
+    private final String trigger;
+    private final HashSet<String> subjects;
+    private final HashSet<String> consumes;
+    private final HashSet<String> produces;
     private String narration;
 
     public CustomAct(String trigger) {

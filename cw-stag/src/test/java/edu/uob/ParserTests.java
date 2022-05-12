@@ -4,13 +4,13 @@ import edu.uob.entities.*;
 import edu.uob.parser.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTests {
     private GameServer serverBas;
@@ -29,7 +29,6 @@ public class ParserTests {
             "Tom:cutdown tree"
     };
     String[] invalidCommands = {
-
     };
 
     @BeforeEach
