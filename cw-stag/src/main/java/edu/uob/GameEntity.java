@@ -11,7 +11,6 @@ public abstract class GameEntity
         this.description = description;
     }
 
-    // wwzzjj
     public abstract void accept(Visitor v);
 
     public abstract String getType();

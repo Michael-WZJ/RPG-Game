@@ -32,7 +32,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-
 /** This class implements the STAG server. */
 public final class GameServer {
 
@@ -85,11 +84,11 @@ public final class GameServer {
         } catch (STAGException se) {
             return se.getMessage();
         }
-        // return "Thanks for your message: " + command; //wzj
     }
 
-
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    /*                     Methods for performing actions                       */
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     public String lookInventory(String username) {
         String result = "You're carrying these artefacts:\n";
         result = result.concat(gameModel.getPlayer(username).printInventory());
@@ -129,10 +128,6 @@ public final class GameServer {
     public String lookHealth(String username) {
         int healthLevel = gameModel.getPlayer(username).getHealthLevel();
         return "Your health level is: " + healthLevel;
-    }
-
-    public HashSet<CustomAct> getAction(String trigger) {
-        return gameModel.getAction(trigger);
     }
 
     public HashSet<GameEntity> getEntitiesByName(HashSet<String> names, String username) {
@@ -216,10 +211,10 @@ public final class GameServer {
         return true;
     }
 
-
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     /*                      Methods for Reading Files                           */
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    // Load Entity File
     public void loadEntities(File entitiesFile) {
         try {
             Parser parser = new Parser();
@@ -322,7 +317,7 @@ public final class GameServer {
         }
     }
 
-
+    // Load Action File
     public void loadActions(File actionsFile) {
         try {
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -389,12 +384,15 @@ public final class GameServer {
         return cusAction;
     }
 
-
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     /*                      Accessor and Mutator Methods                        */
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     public GameModel getGameModel() {
         return gameModel;
+    }
+
+    public HashSet<CustomAct> getAction(String trigger) {
+        return gameModel.getAction(trigger);
     }
 
     public Player getPlayer(String username) {
@@ -405,7 +403,6 @@ public final class GameServer {
         return gameModel.getLocation(location);
     }
 
-    // wzj 不要这么多空行
     //  === Methods below are there to facilitate server related operations. ===
 
     /**

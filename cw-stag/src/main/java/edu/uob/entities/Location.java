@@ -17,7 +17,6 @@ public class Location extends GameEntity {
         players = new HashSet<>();
     }
 
-
     public void addPath(String path) {
         paths.add(path);
     }
@@ -25,7 +24,6 @@ public class Location extends GameEntity {
     public void removePath(String path) {
         paths.remove(path);
     }
-
 
     public Set<String> getEntityNames() {
         return entities.keySet();
@@ -43,7 +41,6 @@ public class Location extends GameEntity {
         return entities.remove(name);
     }
 
-
     public void addPlayer(String username) {
         players.add(username);
     }
@@ -52,7 +49,6 @@ public class Location extends GameEntity {
         players.remove(name);
     }
 
-
     public boolean hasEntity(String entity) {
         return entities.containsKey(entity);
     }
@@ -60,7 +56,6 @@ public class Location extends GameEntity {
     public boolean hasPath(String path) {
         return paths.contains(path);
     }
-
 
     @Override
     public void accept(Visitor v) {
@@ -83,7 +78,6 @@ public class Location extends GameEntity {
         return result;
     }
 
-    // wzj
     public String printPaths() {
         String result = "";
         for (String p : paths) {

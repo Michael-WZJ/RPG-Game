@@ -34,9 +34,9 @@ final class EntitiesFileTests {
           String locationName = locationDetails.getId().getId();
 
           // wzj
-          Graph a = firstLocation.getSubgraphs().get(0);
-          System.out.println(a.getId().getId());
-          System.out.println(a.getNodes(false));
+          //Graph a = firstLocation.getSubgraphs().get(0);
+          //System.out.println(a.getId().getId());
+          //System.out.println(a.getNodes(false));
           // wzj
 
           assertEquals("cabin", locationName, "First location should have been 'cabin'");
@@ -57,5 +57,4 @@ final class EntitiesFileTests {
           fail("ParseException was thrown when attempting to read basic entities file");
       }
   }
-
 }

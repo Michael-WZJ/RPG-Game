@@ -45,7 +45,6 @@ public class CustomAct extends GameAction {
         }
     }
 
-
     public void doConsumeAct(GameServer server) throws STAGException {
         HashSet<String> consumedNames = new HashSet<>(consumes);
         HashSet<GameEntity> consumedEntitySet = getEntitySet(consumedNames, server);
@@ -82,8 +81,6 @@ public class CustomAct extends GameAction {
         return result;
     }
 
-
-
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     /*                  Methods for Building CustomAction                       */
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -103,14 +100,9 @@ public class CustomAct extends GameAction {
         this.narration = narration;
     }
 
-
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     /*                      Accessor and Mutator Methods                        */
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-    public String getNarration() {
-        return narration;
-    }
-
     public String getTrigger() {
         return trigger;
     }

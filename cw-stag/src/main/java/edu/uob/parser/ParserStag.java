@@ -31,26 +31,24 @@ public class ParserStag {
     }
 
     public GameAction parse() throws STAGException {
+        if (! username.matches("^[A-Za-z' \\-]*$")) {
+            throw new InvalidCommandException("Not type valid username ?");
+        }
         if (triggers.isEmpty()) {
-            throw new InvalidCommandException("No trigger words ?");
+            throw new InvalidCommandException("Not type valid trigger words ?");
+        } else if (triggers.size() > 1) {
+            throw new InvalidCommandException("Not perform one action at a time ?");
         }
 
-        if (triggers.get(0).equals("look")) {
-            return new LookAct(username);
-        } else if (triggers.get(0).matches("inventory|inv")) {
-            return new InvAct(username);
-        } else if (triggers.get(0).equals("get")) {
-            return buildGetAct();
-        } else if (triggers.get(0).equals("drop")) {
-            return buildDropAct();
-        } else if (triggers.get(0).equals("goto")) {
-            return buildGotoAct();
-        } else if (triggers.get(0).equals("health")) {
-            return new HealthAct(username);
-        }
-        else {
-            return buildFindCustomAct();
-        }
+        return switch (triggers.get(0)) {
+            case "look" -> new LookAct(username);
+            case "inventory", "inv" -> new InvAct(username);
+            case "get" -> buildGetAct();
+            case "drop" -> buildDropAct();
+            case "goto" -> buildGotoAct();
+            case "health" -> new HealthAct(username);
+            default -> buildFindCustomAct();
+        };
     }
 
     public void getCommandBody() {
@@ -65,7 +63,7 @@ public class ParserStag {
 
     public GetAct buildGetAct() throws STAGException {
         if (subjects.isEmpty()) {
-            throw new InvalidCommandException("No subject for get ?");
+            throw new InvalidCommandException("Not type valid subject for 'get' ?");
         } else {
             return new GetAct(username, subjects);
         }
@@ -73,7 +71,7 @@ public class ParserStag {
 
     public DropAct buildDropAct() throws STAGException {
         if (subjects.isEmpty()) {
-            throw new InvalidCommandException("No subject for drop ?");
+            throw new InvalidCommandException("Not type valid subject for 'drop' ?");
         } else {
             return new DropAct(username, subjects);
         }
@@ -81,7 +79,7 @@ public class ParserStag {
 
     public GotoAct buildGotoAct() throws STAGException {
         if (subjects.isEmpty()) {
-            throw new InvalidCommandException("No subject for goto ?");
+            throw new InvalidCommandException("Not type valid subject for 'goto' ?");
         } else {
             return new GotoAct(username, subjects);
         }
@@ -90,14 +88,11 @@ public class ParserStag {
     public FindCustomAct buildFindCustomAct() throws STAGException {
         String trigger = triggers.get(0);
         if (subjects.isEmpty()) {
-            throw new InvalidCommandException("No valid subject for '"+ trigger +"' ?");
+            throw new InvalidCommandException("Not type valid subject for '"+ trigger +"' ?");
         } else {
             return new FindCustomAct(username, trigger, subjects);
         }
     }
-
-
-
 
     public String getTokenLabel() {
         return tokenizer.getTokenLabel();

@@ -36,8 +36,6 @@ public class GetAct extends GameAction {
         } else return validSubList.get(0);
     }
 
-
-
     @Override
     public String toString() {
         String result = getUsername() + ":\nget:\n";

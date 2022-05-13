@@ -27,7 +27,6 @@ public class FindCustomAct extends GameAction {
         return action.execute(server);
     }
 
-
     public CustomAct findCustomAct(GameServer server) throws STAGException {
         HashSet<CustomAct> validCustomActs = new HashSet<>();
         HashSet<CustomAct> allActions = server.getAction(trigger);
@@ -50,7 +49,6 @@ public class FindCustomAct extends GameAction {
         }
         return validCustomActs.iterator().next();
     }
-
 
     public HashSet<CustomAct> fetchAction(HashSet<CustomAct> allActions) throws STAGException {
         HashSet<String> subjectsInAllActs = new HashSet<>();
@@ -77,10 +75,6 @@ public class FindCustomAct extends GameAction {
         }
         return resultSet;
     }
-
-
-
-
 
     @Override
     public String toString() {

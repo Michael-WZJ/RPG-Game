@@ -47,6 +47,5 @@ public class STAGException extends Exception {
             super("[ERROR] Some of the entity: " + entities + " can't be '"+ type +
                     "' ?\nMay be taken by other players ?");
         }
-
     }
 }

@@ -1,11 +1,9 @@
 package edu.uob;
 
-import edu.uob.actions.CustomAct;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.nio.file.Paths;
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -34,7 +32,7 @@ final class BasicCommandTests {
   // Test to spawn a new server and send a simple "look" command
   @Test
   void testLookingAroundStartLocation() {
-    String response = server.handleCommand("player 1: look").toLowerCase();
+    String response = server.handleCommand("player : look").toLowerCase();
     assertTrue(response.contains("empty room"), "Did not see description of room in response to look");
     assertTrue(response.contains("magic potion"), "Did not see description of artifacts in response to look");
     assertTrue(response.contains("wooden trapdoor"), "Did not see description of furniture in response to look");
@@ -42,109 +40,78 @@ final class BasicCommandTests {
 
   // Add more unit tests or integration tests here.
   @Test
-  void testwzj9() {
-    System.out.println(serverExt.handleCommand("cutdown "));
-    System.out.println(serverExt.handleCommand("player2: health"));
+  void testBuiltInAction() {
+    assertTrue(serverExt.handleCommand("Bob: looK").contains("sharp axe"));
+    assertTrue(serverExt.handleCommand("Tom: look").contains("wooden trapdoor"));
+    assertTrue(serverExt.handleCommand(" look").contains("Bob"));
 
-  }
-  @Test
-  void testwzj8() {
-    System.out.println(serverExt.handleCommand("bob: look"));
-    System.out.println(serverExt.handleCommand("bob: cutdown"));
-    System.out.println();
-    System.out.println(serverExt.handleCommand("bob: cutdown tree"));
-    System.out.println();
-    System.out.println(serverExt.handleCommand("bob: get axe"));
-    System.out.println();
-    System.out.println(serverExt.handleCommand("bob: goto forest"));
-    System.out.println(serverExt.handleCommand("bob: inv"));
-    System.out.println(serverExt.handleCommand("bob: cutdown tree"));
-    System.out.println();
-    System.out.println(serverExt.handleCommand("bob: look"));
-    System.out.println(serverExt.handleCommand("bob: get key"));
-    System.out.println();
-    System.out.println(serverExt.handleCommand("bob: goto cabin"));
-    System.out.println(serverExt.handleCommand("bob: open trapdoor"));
-    System.out.println();
-    System.out.println(serverExt.handleCommand("bob: goto cellar"));
-    System.out.println(serverExt.handleCommand("bob: hit elf"));
-    System.out.println();
-    System.out.println(serverExt.handleCommand("bob: health"));
-    System.out.println();
-    System.out.println(serverExt.handleCommand("bob: hit elf"));
-    System.out.println();
-    System.out.println(serverExt.handleCommand("bob: hit elf"));
-    System.out.println();
-    System.out.println(serverExt.handleCommand("bob: look"));
-    System.out.println(serverExt.handleCommand("bob: goto cellar"));
-    System.out.println(serverExt.handleCommand("bob: health"));
-  }
-  @Test
-  // wzj 该测试 之后 放到其他测试类中，不要放在command测试里
-  void testwzj7() {
-    System.out.println(serverExt.handleCommand("bob: look"));
-    CustomAct action = new CustomAct("cutdown");
-    action.addSubject("axe");
-    assertTrue(serverExt.canAct("bob", action));
-    action.addSubject("key");
-    assertFalse(serverExt.canAct("bob", action));
-    System.out.println(serverExt.handleCommand("bob: goto forest"));
-    System.out.println(serverExt.handleCommand("bob: get key"));
-    System.out.println(serverExt.handleCommand("bob: goto cabin"));
-    System.out.println(serverExt.handleCommand("bob: inv"));
-    assertTrue(serverExt.canAct("bob", action));
-  }
-  @Test
-  void testwzj6() {
-    System.out.println(serverExt.handleCommand("health level"));
-    System.out.println(serverExt.handleCommand("player2: health"));
-  }
-  @Test
-  void testwzj5() {
-    System.out.println(serverExt.handleCommand("get coin"));
-    System.out.println(serverExt.handleCommand("player2: LooK"));
-    System.out.println(serverExt.handleCommand("goto forest"));
-    System.out.println(serverExt.handleCommand("player2: LooK"));
-    System.out.println(serverExt.handleCommand("player2: goto forest"));
-    System.out.println(serverExt.handleCommand("look"));
-  }
-  @Test
-  void testwzj4() {
-    System.out.println(serverExt.handleCommand("player2: get coin"));
-    System.out.println(serverExt.handleCommand("get potion"));
-    System.out.println(serverExt.handleCommand("inv"));
-    System.out.println(serverExt.handleCommand("get axe"));
-    System.out.println(serverExt.handleCommand("player2: INV"));
-    System.out.println(serverExt.handleCommand("look"));
+    serverExt.handleCommand("Bob: get coin");
+    assertTrue(serverExt.handleCommand("get coin and trapdoor").contains("ERROR"));
+    assertTrue(serverExt.handleCommand("get axe and potion").contains("ERROR"));
+    assertTrue(serverExt.handleCommand("get trapdoor").contains("ERROR"));
+    assertFalse(serverExt.handleCommand("look").contains("coin"));
+    assertTrue(serverExt.handleCommand("Bob: INV").contains("coin"));
+    assertTrue(serverExt.handleCommand("Tom: in").contains("ERROR"));
 
-    System.out.println(serverExt.handleCommand("drop"));
-    System.out.println(serverExt.handleCommand("drop potion and axe"));
-    System.out.println(serverExt.handleCommand("drop the axe"));
+    serverExt.handleCommand("get potion");
+    assertTrue(serverExt.handleCommand(" inventory").contains("potion"));
 
-    System.out.println(serverExt.handleCommand("look"));
+    serverExt.handleCommand("get axe");
+    assertFalse(serverExt.handleCommand("look").contains("axe"));
+    assertTrue(serverExt.handleCommand("drop").contains("ERROR"));
+    assertTrue(serverExt.handleCommand("drop potion and axe").contains("ERROR"));
 
-  }
-  @Test
-  void testwzj3() {
-    System.out.println(serverExt.handleCommand("look"));
-    System.out.println(serverExt.handleCommand("player2: get coin"));
-    System.out.println(serverExt.handleCommand("get coin and trapdoor"));
-    System.out.println(serverExt.handleCommand("get axe and potion"));
-    System.out.println(serverExt.handleCommand("get trapdoor"));
-    System.out.println(serverExt.handleCommand("look"));
-    System.out.println(serverExt.handleCommand("player2: INV"));
-  }
-  @Test
-  void testwzj() {
-    System.out.println(serverExt.handleCommand("player1: looK"));
-    System.out.println(serverExt.handleCommand("player2: look"));
-    System.out.println(serverExt.handleCommand(" look"));
-  }
-  @Test
-  void testwzj2() {
-    System.out.println(serverExt.handleCommand("player1: inV"));
-    System.out.println(serverExt.handleCommand("player2: in"));
-    System.out.println(serverExt.handleCommand(" inventory"));
+    serverExt.handleCommand("drop the axe");
+    assertTrue(serverExt.handleCommand("Bob:look").contains("axe"));
+
+    serverExt.handleCommand("Bob:goto forest");
+    assertFalse(serverExt.handleCommand("LOOK").contains("Bob"));
+    assertTrue(serverExt.handleCommand("Bob:LOOK").contains("pine tree"));
+
+    assertTrue(serverExt.handleCommand("health level").contains("3"));
   }
 
+  @Test
+  void testCustomAction() {
+    assertTrue(serverExt.handleCommand("bob: cutdown").contains("ERROR"));
+    assertTrue(serverExt.handleCommand("bob: cutdown tree").contains("ERROR"));
+
+    serverExt.handleCommand("bob: get axe");
+    serverExt.handleCommand("bob: goto forest");
+    serverExt.handleCommand("bob: cutdown tree");
+    assertFalse(serverExt.handleCommand("bob: look").contains("tree"));
+    serverExt.handleCommand("bob: get log");
+    serverExt.handleCommand("bob: get key");
+    serverExt.handleCommand("bob: goto cabin");
+    assertTrue(serverExt.handleCommand("bob: INV").contains("key"));
+    assertTrue(serverExt.handleCommand("bob: INV").contains("log"));
+    serverExt.handleCommand("bob: open trapdoor");
+    assertFalse(serverExt.handleCommand("bob: INV").contains("key"));
+    assertTrue(serverExt.handleCommand("bob: look").contains("cellar"));
+    serverExt.handleCommand("bob: goto cellar");
+
+    serverExt.handleCommand("bob: hit elf");
+    assertTrue(serverExt.handleCommand("bob: health").contains("2"));
+
+    assertFalse(serverExt.handleCommand("bob: look").contains("log"));
+    assertFalse(serverExt.handleCommand("bob: look").contains("axe"));
+    serverExt.handleCommand("bob: hit elf");
+    serverExt.handleCommand("bob: hit elf");
+    assertTrue(serverExt.handleCommand("bob: look").contains("log cabin"));
+    assertTrue(serverExt.handleCommand("health level").contains("3"));
+    serverExt.handleCommand("bob: goto cellar");
+    assertFalse(serverExt.handleCommand("bob: inv").contains("log"));
+    assertFalse(serverExt.handleCommand("bob: inv").contains("axe"));
+    assertTrue(serverExt.handleCommand("bob: look").contains("log"));
+    assertTrue(serverExt.handleCommand("bob: look").contains("axe"));
+  }
+
+  @Test
+  void testInvalidCommand() {
+    assertTrue(serverExt.handleCommand("").contains("ERROR"));
+    assertTrue(serverExt.handleCommand(" ").contains("ERROR"));
+    assertTrue(serverExt.handleCommand(":").contains("ERROR"));
+    assertTrue(serverExt.handleCommand("inv and look").contains("ERROR"));
+    assertTrue(serverExt.handleCommand("player2: health").contains("ERROR"));
+  }
 }

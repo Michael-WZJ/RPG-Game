@@ -19,7 +19,6 @@ public class Player extends GameEntity {
         healthLevel = 3;
     }
 
-
     public void setLocation(String newLocation) {
         location = newLocation;
     }
@@ -27,7 +26,6 @@ public class Player extends GameEntity {
     public String getLocation() {
         return location;
     }
-
 
     public void setHealthLevel(int level) {
         healthLevel = level;
@@ -49,7 +47,6 @@ public class Player extends GameEntity {
         }
     }
 
-
     public void addArtefact(GameEntity entity) {
         inventory.put(entity.getName(), entity);
     }
@@ -69,7 +66,6 @@ public class Player extends GameEntity {
     public boolean hasArtefact(String entity) {
         return inventory.containsKey(entity);
     }
-
 
     @Override
     public void accept(Visitor v) {

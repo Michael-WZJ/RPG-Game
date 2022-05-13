@@ -36,7 +36,6 @@ public class DropAct extends GameAction {
         } else return validSubList.get(0);
     }
 
-
     @Override
     public String toString() {
         String result = getUsername() + ":\ndrop:\n";

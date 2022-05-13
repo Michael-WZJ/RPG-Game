@@ -1,14 +1,11 @@
 package edu.uob;
 
-import edu.uob.actions.CustomAct;
-import edu.uob.entities.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 import java.nio.file.Paths;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -38,20 +35,22 @@ public class LoadFileTests {
     @Test
     void testGameState() {
         // Test Basic files
+        assertEquals("cabin", serverBas.getGameModel().getStartLoc());
         HashSet<String> entities = identifiersBas.get(ENTITY);
         HashSet<String> actions = identifiersBas.get(ACTION);
-        List<String> entityList = Arrays.asList("cabin", "key", "log");
+        List<String> entityList = Arrays.asList("cabin", "key", "log", "cellar");
         List<String> actionList = Arrays.asList("inv", "look", "health",
-                "cutdown", "fight", "attack");
+                "inventory", "get", "drop", "goto", "cutdown", "fight", "attack");
 
         assertTrue(entities.containsAll(entityList));
         assertTrue(actions.containsAll(actionList));
 
         // Test Extended files
+        assertEquals("cabin", serverExt.getGameModel().getStartLoc());
         entities = identifiersExt.get(ENTITY);
         actions = identifiersExt.get(ACTION);
         List<String> entListExt = new ArrayList<>(Arrays.asList("horn", "tree",
-                "riverbank"));
+                "riverbank", "shovel"));
         entListExt.addAll(entityList);
         List<String> actListExt = new ArrayList<>(Arrays.asList("pay", "bridge",
                 "dig", "blow"));
@@ -59,15 +58,11 @@ public class LoadFileTests {
 
         assertTrue(entities.containsAll(entListExt));
         assertTrue(actions.containsAll(actListExt));
-        ///* wzj
-        System.out.println(entities);
-        System.out.println(actions);
-        //wzj */
     }
 
 
+    /* wzj
     @Test
-    // wzj
     void testActions() {
         GameModel model = serverExt.getGameModel();
         for (HashSet<CustomAct> hSet : model.getActions().values()) {
@@ -75,9 +70,7 @@ public class LoadFileTests {
             System.out.println();
         }
     }
-
     @Test
-    // wzj
     void testActions2() {
         GameModel model = serverBas.getGameModel();
         for (HashSet<CustomAct> hSet : model.getActions().values()) {
@@ -85,27 +78,23 @@ public class LoadFileTests {
             System.out.println();
         }
     }
-
     @Test
-    // wzj
     void testEntities() {
         GameModel model = serverBas.getGameModel();
-        assertEquals("cabin", model.getStartLoc());
         for (Location l : model.getLocations().values()) {
             System.out.println(l);
             System.out.println();
         }
     }
     @Test
-    // wzj
     void testEntities2() {
         GameModel model = serverExt.getGameModel();
-        assertEquals("cabin", model.getStartLoc());
         for (Location l : model.getLocations().values()) {
             System.out.println(l);
             System.out.println();
         }
     }
+    // wzj */
 }
 
 

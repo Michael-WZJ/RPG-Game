@@ -19,7 +19,6 @@ public class GameModel {
     private final HashSet<String> entityNames;
     private final HashSet<String> triggerNames;
 
-
     public GameModel() {
         locations = new HashMap<>();
         players = new HashMap<>();
@@ -47,7 +46,6 @@ public class GameModel {
         }
         return "";
     }
-
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     /*                    Methods for Changing Game State                       */
@@ -103,7 +101,6 @@ public class GameModel {
         return startLocation;
     }
 
-
     public GameEntity getEntityInLoc(String entity) {
         for (Location l : locations.values()) {
             if (l.hasEntity(entity)) {
@@ -113,7 +110,6 @@ public class GameModel {
         return null;
     }
 
-
     public void addLocation(Location loc) {
         locations.put(loc.getName(), loc);
     }
@@ -121,12 +117,6 @@ public class GameModel {
     public Location getLocation(String loc) {
         return locations.get(loc);
     }
-
-    // wzj
-    public Map<String, Location> getLocations() {
-        return locations;
-    }
-
 
     public void addAction(CustomAct action) {
         String trigger = action.getTrigger();
@@ -143,21 +133,13 @@ public class GameModel {
         return actions.get(trigger);
     }
 
-    // wzj
     public Map<String, HashSet<CustomAct>> getActions() {
         return actions;
     }
 
-
     public Player getPlayer(String username) {
         return players.get(username);
     }
-
-    // wzj
-    public Map<String, Player> getPlayers() {
-        return players;
-    }
-
 
     public List<HashSet<String>>  getIdentifiers() {
         List<HashSet<String>> identifiers = new ArrayList<>();
