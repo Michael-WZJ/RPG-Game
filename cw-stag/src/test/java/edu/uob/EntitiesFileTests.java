@@ -32,13 +32,6 @@ final class EntitiesFileTests {
           Node locationDetails = firstLocation.getNodes(false).get(0);
           // Yes, you do need to get the ID twice !
           String locationName = locationDetails.getId().getId();
-
-          // wzj
-          //Graph a = firstLocation.getSubgraphs().get(0);
-          //System.out.println(a.getId().getId());
-          //System.out.println(a.getNodes(false));
-          // wzj
-
           assertEquals("cabin", locationName, "First location should have been 'cabin'");
 
           // The paths will always be in the second subgraph
@@ -57,4 +50,5 @@ final class EntitiesFileTests {
           fail("ParseException was thrown when attempting to read basic entities file");
       }
   }
+
 }

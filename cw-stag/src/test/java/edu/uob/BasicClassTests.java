@@ -6,22 +6,18 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BasicClassTests {
     private GameServer serverExt;
-    private List<HashSet<String>> identifiersExt; //wzj
 
     @BeforeEach
     void setup() {
         File entitiesFile1 = Paths.get("config/extended-entities.dot").toAbsolutePath().toFile();
         File actionsFile1 = Paths.get("config/extended-actions.xml").toAbsolutePath().toFile();
         serverExt = new GameServer(entitiesFile1, actionsFile1);
-        identifiersExt = serverExt.getGameModel().getIdentifiers();
     }
 
     @Test

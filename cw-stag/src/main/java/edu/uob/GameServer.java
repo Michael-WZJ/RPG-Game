@@ -180,13 +180,6 @@ public final class GameServer {
         } else {
             return false;
         }
-
-        /* wzj
-        if (! loc.hasEntity(entity)) {
-            return false;
-        }
-        return loc.getEntity(entity).getType().equals("Artefact");
-        */
     }
 
     public boolean canDrop(String username, String entity) {
@@ -343,11 +336,8 @@ public final class GameServer {
         for (int i = 0; i < triggerNum; i++) {
             String trigger = triggerList.item(i).getTextContent().toLowerCase();
             CustomAct cusAction = buildCustomAct(trigger, action);
-            //System.out.println(cusAction); // wzj
             gameModel.addAction(cusAction);
         }
-
-
     }
 
     public CustomAct buildCustomAct(String trigger, Element action) {

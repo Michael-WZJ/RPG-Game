@@ -59,42 +59,6 @@ public class LoadFileTests {
         assertTrue(entities.containsAll(entListExt));
         assertTrue(actions.containsAll(actListExt));
     }
-
-
-    /* wzj
-    @Test
-    void testActions() {
-        GameModel model = serverExt.getGameModel();
-        for (HashSet<CustomAct> hSet : model.getActions().values()) {
-            System.out.println(hSet);
-            System.out.println();
-        }
-    }
-    @Test
-    void testActions2() {
-        GameModel model = serverBas.getGameModel();
-        for (HashSet<CustomAct> hSet : model.getActions().values()) {
-            System.out.println(hSet);
-            System.out.println();
-        }
-    }
-    @Test
-    void testEntities() {
-        GameModel model = serverBas.getGameModel();
-        for (Location l : model.getLocations().values()) {
-            System.out.println(l);
-            System.out.println();
-        }
-    }
-    @Test
-    void testEntities2() {
-        GameModel model = serverExt.getGameModel();
-        for (Location l : model.getLocations().values()) {
-            System.out.println(l);
-            System.out.println();
-        }
-    }
-    // wzj */
 }
 
 
