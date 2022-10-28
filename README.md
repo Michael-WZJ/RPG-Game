@@ -1,2 +1,2 @@
-# 04-Java-STAG
-Java STAG Assignment
+# RPG-Game
+通过终端互动的RPG游戏，支持多名玩家以及修改配置文件自定义场景和规则
