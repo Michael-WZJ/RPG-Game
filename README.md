@@ -1,2 +1,2 @@
 # RPG-Game
-通过终端互动的RPG游戏，支持多名玩家以及修改配置文件自定义场景和规则
+Interactive RPG via terminal, with support for multiple players and modification of profiles to customise scenarios and rules
