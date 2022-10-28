@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+        <triggers>
+            <keyword>open</keyword>
+            <keyword>unlock</keyword>
+        </triggers>
+        <subjects>
+            <entity>trapdoor</entity>
+            <entity>key4</entity>
+        </subjects>
+        <consumed>
+        </consumed>
+        <produced>
+            <entity>cellar</entity>
+        </produced>
+        <narration>You unlock the door and see steps leading down into a cellar</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>chop</keyword>
+            <keyword>cut</keyword>
+            <keyword>cutdown</keyword>
+        </triggers>
+        <subjects>
+            <entity>tree</entity>
+            <entity>axe</entity>
+        </subjects>
+        <consumed>
+            <entity>tree</entity>
+        </consumed>
+        <produced>
+            <entity>log</entity>
+        </produced>
+        <narration>You cut down the tree with the axe</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>drink</keyword>
+        </triggers>
+        <subjects>
+            <entity>potion1</entity>
+        </subjects>
+        <consumed>
+            <entity>potion1</entity>
+        </consumed>
+        <produced>
+            <entity>health</entity>
+        </produced>
+        <narration>You drink the potion and your health improves</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>fight</keyword>
+            <keyword>hit</keyword>
+            <keyword>attack</keyword>
+        </triggers>
+        <subjects>
+            <entity>elf</entity>
+        </subjects>
+        <consumed>
+            <entity>health</entity>
+        </consumed>
+        <produced>
+        </produced>
+        <narration>You attack the elf, but he fights back and you lose some health</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>pay</keyword>
+        </triggers>
+        <subjects>
+            <entity>elf</entity>
+            <entity>coin</entity>
+        </subjects>
+        <consumed>
+            <entity>coin</entity>
+        </consumed>
+        <produced>
+            <entity>shovel</entity>
+        </produced>
+        <narration>You pay the elf your silver coin and he produces a shovel</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>bridge</keyword>
+        </triggers>
+        <subjects>
+            <entity>log</entity>
+            <entity>river</entity>
+        </subjects>
+        <consumed>
+            <entity>log</entity>
+        </consumed>
+        <produced>
+            <entity>clearing</entity>
+        </produced>
+        <narration>You bridge the river with the log and can now reach the other side</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>dig</keyword>
+        </triggers>
+        <subjects>
+            <entity>ground</entity>
+            <entity>shovel</entity>
+        </subjects>
+        <consumed>
+            <entity>ground</entity>
+        </consumed>
+        <produced>
+            <entity>hole</entity>
+            <entity>gold</entity>
+        </produced>
+        <narration>You dig into the soft ground and unearth a pot of gold !!!</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>blow</keyword>
+        </triggers>
+        <subjects>
+            <entity>horn</entity>
+        </subjects>
+        <consumed>
+        </consumed>
+        <produced>
+            <entity>lumberjack</entity>
+        </produced>
+        <narration>You blow the horn and as if by magic, a lumberjack appears !</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>drink</keyword>
+        </triggers>
+        <subjects>
+            <entity>potion2</entity>
+        </subjects>
+        <consumed>
+            <entity>potion2</entity>
+        </consumed>
+        <produced>
+            <entity>health</entity>
+        </produced>
+        <narration>You drink the potion and your health improves</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>drink</keyword>
+        </triggers>
+        <subjects>
+            <entity>potion3</entity>
+        </subjects>
+        <consumed>
+            <entity>potion3</entity>
+        </consumed>
+        <produced>
+            <entity>health</entity>
+        </produced>
+        <narration>You drink the potion and your health improves</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>open</keyword>
+            <keyword>unlock</keyword>
+        </triggers>
+        <subjects>
+            <entity>door1</entity>
+            <entity>key1</entity>
+        </subjects>
+        <consumed>
+        </consumed>
+        <produced>
+            <entity>wayneroom</entity>
+        </produced>
+        <narration>You unlock the door and see steps leading down into a room</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>open</keyword>
+            <keyword>unlock</keyword>
+        </triggers>
+        <subjects>
+            <entity>door2</entity>
+            <entity>key2</entity>
+        </subjects>
+        <consumed>
+        </consumed>
+        <produced>
+            <entity>appleroom</entity>
+        </produced>
+        <narration>You unlock the door and see steps leading down into a room</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>open</keyword>
+            <keyword>unlock</keyword>
+        </triggers>
+        <subjects>
+            <entity>door3</entity>
+            <entity>key3</entity>
+        </subjects>
+        <consumed>
+        </consumed>
+        <produced>
+            <entity>wanroom</entity>
+        </produced>
+        <narration>You unlock the door and see steps leading down into a room</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>pay</keyword>
+        </triggers>
+        <subjects>
+            <entity>elf9</entity>
+            <entity>coin</entity>
+        </subjects>
+        <consumed>
+            <entity>coin</entity>
+        </consumed>
+        <produced>
+            <entity>video6</entity>
+        </produced>
+        <narration>You pay the elf9 your silver coin and it produces a video</narration>
+    </action>
+
+
+    <action>
+        <triggers>
+            <keyword>playwith</keyword>
+        </triggers>
+        <subjects>
+            <entity>elf7</entity>
+            <entity>tool2</entity>
+        </subjects>
+        <consumed>
+            <entity>health</entity>
+        </consumed>
+        <produced>
+            <entity>secretwater3</entity>
+        </produced>
+        <narration>You playwith the elf7 and it produces something</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>playwith</keyword>
+        </triggers>
+        <subjects>
+            <entity>elf2</entity>
+            <entity>video1</entity>
+        </subjects>
+        <consumed>
+            <entity>health</entity>
+        </consumed>
+        <produced>
+            <entity>coin</entity>
+        </produced>
+        <narration>You playwith the elf2 and it produces something</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>playwith</keyword>
+        </triggers>
+        <subjects>
+            <entity>elf4</entity>
+            <entity>elf6</entity>
+        </subjects>
+        <consumed>
+            <entity>health</entity>
+        </consumed>
+        <produced>
+            <entity>video5</entity>
+        </produced>
+        <narration>You playwith the elf4 and elf6 and they produce something</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>summon</keyword>
+        </triggers>
+        <subjects>
+            <entity>tool1</entity>
+        </subjects>
+        <consumed>
+            <entity>health</entity>
+        </consumed>
+        <produced>
+            <entity>elf10</entity>
+        </produced>
+        <narration>You playwith the elf and it produces something</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>playwith</keyword>
+        </triggers>
+        <subjects>
+            <entity>elf10</entity>
+            <entity>bed2</entity>
+        </subjects>
+        <consumed>
+        </consumed>
+        <produced>
+            <entity>health</entity>
+            <entity>potion3</entity>
+        </produced>
+        <narration>You playwith the elf10 and it produces something</narration>
+    </action>
+
+    <action>
+        <triggers>
+            <keyword>fight</keyword>
+            <keyword>hit</keyword>
+            <keyword>attack</keyword>
+        </triggers>
+        <subjects>
+            <entity>elf11</entity>
+        </subjects>
+        <consumed>
+            <entity>health</entity>
+        </consumed>
+        <produced>
+            <entity>potion2</entity>
+        </produced>
+        <narration>You attack the elf11 and it produces something</narration>
+    </action>
+
+</actions>

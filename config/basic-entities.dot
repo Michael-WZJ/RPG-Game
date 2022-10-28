@@ -1,0 +1,189 @@
+digraph layout {
+    /* ortho splines just makes the arrows into straight lines (rather than curvy ones !) */
+    splines = ortho;
+    /* space everything out a bit to make it easier to see (for larger models) */
+    graph [ranksep="1" nodesep="1"];
+    node [shape = "rect"];
+
+    subgraph locations {
+
+        subgraph cluster001 {
+            node [shape = "none"];
+            cabin [description = "A log cabin in the woods"];
+            subgraph artefacts {
+                node [shape = "diamond"];
+                potion1 [description = "Recovery your body power"];
+                potion2 [description = "Recovery your body power"];
+                potion3 [description = "Recovery your body power"];
+                axe [description = "A razor sharp axe"];
+                coin [description = "A silver coin"];
+            }
+            subgraph furniture {
+                node [shape = "hexagon"];
+                trapdoor [description = "A locked wooden trapdoor in the floor"];
+            }
+        }
+
+        subgraph cluster002 {
+            node [shape = "none"];
+            forest [description = "A deep dark forest"];
+            subgraph artefacts {
+                node [shape = "diamond"];
+                key1 [description = "To room"];
+                key2 [description = "To room"];
+                key3 [description = "To room"];
+                key4 [description = "A rusty old key"];
+            }
+            subgraph furniture {
+                node [shape = "hexagon"];
+                tree [description = "A tall pine tree"];
+
+            }
+        }
+
+        subgraph cluster003 {
+            node [shape = "none"];
+            cellar [description = "A dusty cellar"]
+            subgraph characters {
+                node [shape = "ellipse"];
+                elf [description = "An angry looking Elf"];
+            }
+            subgraph artefacts {
+                node [shape = "diamond"];
+                tool1 [description = "whip a little sex"];
+                tool2 [description = "massage log a little sex"];
+                video1 [description = "ssis-001"];
+                video2 [description = "ebody-001"];
+            }
+            subgraph furniture {
+                node [shape = "hexagon"];
+                door1 [description = "To room"];
+                door2 [description = "To room"];
+                door3 [description = "To room"];
+            }
+        }
+
+        subgraph cluster004 {
+            node [shape = "none"];
+            riverbank [description = "A grassy riverbank"]
+            subgraph artefacts {
+                node [shape = "diamond"];
+                horn [description = "An old brass horn"];
+            }
+            subgraph furniture {
+                node [shape = "hexagon"];
+                river [description = "A fast flowing river"];
+            }
+        }
+
+        subgraph cluster005 {
+            node [shape = "none"];
+            clearing [description = "A clearing in the woods"]
+            subgraph furniture {
+                node [shape = "hexagon"];
+                ground [description = "It looks like the soil has been recently disturbed"];
+            }
+        }
+
+        subgraph cluster006 {
+            node [shape = "none"];
+            wanroom [description = "A clearing in the woods"]
+            subgraph characters {
+                node [shape = "ellipse"];
+                elf1 [description = "Girl Elf"];
+                elf2 [description = "young Elf"];
+                elf3 [description = "beauti Elf"];
+            }
+            subgraph furniture {
+                node [shape = "hexagon"];
+                bed2 [description = "Sleep some elf in here"];
+            }
+        }
+
+        subgraph cluster007 {
+            node [shape = "none"];
+            appleroom [description = "A clearing in the woods"]
+            subgraph characters {
+                node [shape = "ellipse"];
+                elf4 [description = "Black Elf"];
+                elf5 [description = "Dark Elf"];
+                elf6 [description = "small Elf"];
+            }
+            subgraph furniture {
+                node [shape = "hexagon"];
+                bed1 [description = "Sleep some elf in here"];
+            }
+        }
+
+
+
+        subgraph cluster008 {
+            node [shape = "none"];
+            prison [description = "A clearing in the woods"]
+            subgraph furniture {
+                node [shape = "hexagon"];
+                ground [description = "It looks like the soil has been recently disturbed"];
+            }
+        }
+
+        subgraph cluster009 {
+            node [shape = "none"];
+            wayneroom [description = "A clearing in the woods"]
+            subgraph characters {
+                node [shape = "ellipse"];
+                elf7 [description = "Magic girl"];
+                elf8 [description = "Smart girl"];
+                elf9 [description = "mature femal Elf"];
+                elf10 [description = "female investigator"];
+                elf11 [description = "female kight"];
+                elf12 [description = "your wife"];
+            }
+            subgraph furniture {
+                node [shape = "hexagon"];
+                bed1 [description = "Sleep some elf in here"];
+            }
+        }
+
+        subgraph cluster999 {
+            node [shape = "none"];
+            storeroom [description = "Storage for any entities not placed in the game"]
+            subgraph characters {
+                node [shape = "ellipse"];
+                lumberjack [description = "A burly wood cutter"];
+            }
+            subgraph artefacts {
+                node [shape = "diamond"];
+                log [description = "A heavy wooden log"];
+                shovel [description = "A sturdy shovel"];
+                gold [description = "A big pot of gold"];
+                secretwater1 [description = "some sticky water"]
+                secretwater2 [description = "some sticky water"]
+                secretwater3 [description = "some sticky water"]
+                secretwater4 [description = "some sticky water"]
+                video3 [description = "ap-001"];
+                video4 [description = "abs-001"];
+                video5 [description = "sin-001"];
+                video6 [description = "ret-001"];
+            }
+            subgraph furniture {
+                node [shape = "hexagon"];
+                hole [description = "A deep hole in the ground"];
+            }
+        }
+
+    }
+
+    subgraph paths {
+        cabin -> forest;
+        forest -> cabin;
+        cellar -> cabin;
+        forest -> riverbank
+        riverbank -> forest
+        clearing -> riverbank
+        prison -> cellar
+        wanroom -> cellar
+        wayneroom -> prison
+        appleroom -> cellar
+    }
+
+}
